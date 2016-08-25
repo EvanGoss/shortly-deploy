@@ -1,4 +1,4 @@
-// This file has been modified.
+// This file has been modified. Bad, bad, bad.
 
 var app = require('./server-config.js');
 
