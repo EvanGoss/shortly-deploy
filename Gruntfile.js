@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+  console.log('testing testing testing');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -53,6 +54,8 @@ module.exports = function(grunt) {
       prodServer: {
       }
     },
+
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -89,6 +92,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+  ]);
+
+  grunt.registerTask('pushToLive' [
+    'pushToLive'
   ]);
 
 
