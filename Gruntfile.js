@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  console.log('testing testing testing');
+  console.log('Gruntfile called...');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -51,9 +51,18 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      prodServer: {
+      // prodServer: {},
+      // command: 'echo I am so totally working, yes.',
+      // command: 'echo Still working!'
+      pushToLive: {
+        command: 'git push live master',
+        options: {
+          stdout: true,
+          stderr: true,
+          failOnError: true
+        }
       }
-    },
+    }
 
 
   });
@@ -67,36 +76,36 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('server-dev', function (target) {
-    grunt.task.run([ 'nodemon', 'watch' ]);
-  });
-
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
+
+  grunt.registerTask('server-dev2', function (target) {
+    grunt.task.run([ 'nodemon', 'watch' ]);
+  });
 
   grunt.registerTask('test', [
     'mochaTest'
   ]);
 
   grunt.registerTask('build', [
+
   ]);
 
   grunt.registerTask('upload', function(n) {
-    if (grunt.option('prod')) {
-      // add your production server task here
-    } else {
-      grunt.task.run([ 'server-dev' ]);
-    }
+    // args.length = 1;
+    grunt.task.run('shell:pushToLive');
+    // if (grunt.option('prod')) {
+    //   // add your production server task here
+    // } else {
+    //   grunt.task.run(['server-dev']);
+    // }
   });
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
   ]);
 
-  grunt.registerTask('pushToLive' [
-    'pushToLive'
-  ]);
+  grunt.registerTask('pushFromTerm', ['shell:pushToLive']);
 
-
-};
+}; // end of file
